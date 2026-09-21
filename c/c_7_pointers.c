@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stddef.h>
+#include <stdint.h>
 
 void basics(void)
 {
@@ -42,6 +43,20 @@ void difference(void)
     ptrdiff_t d = g - f;  // difference is 40
 
     printf("%td\n", d);  // Print decimal: 40
+}
+
+void pointers_as_ints(void)
+{
+    int a = 4;
+    int *p = &a;
+
+    // warning - truncates int* (8 bytes) to int (4 bytes) on 64-bit system
+    // int b = (int) p;
+
+    // safe, no truncation
+    uintptr_t b = (uintptr_t) p;
+
+    printf("%p\n", (void *)p);
 }
 
 int main(void)
