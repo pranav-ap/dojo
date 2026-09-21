@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stddef.h>
 
 void basics(void)
 {
@@ -29,6 +30,18 @@ void pass_by_reference(void)
     printf("i is %d\n", i);  // prints "10"
     increment(&i);
     printf("i is %d\n", i);  // prints "11"!
+}
+
+void difference(void)
+{
+    int cats[100];
+
+    int *f = cats + 20;
+    int *g = cats + 60;
+
+    ptrdiff_t d = g - f;  // difference is 40
+
+    printf("%td\n", d);  // Print decimal: 40
 }
 
 int main(void)
