@@ -1,3 +1,4 @@
+#include <initializer_list>
 import std;
 
 using namespace std;
@@ -170,16 +171,108 @@ void write_only_custom_ctor()
 
 }
 
+void initializer_list_arg_ctor()
+{
+    println("=> {}", __func__);
+
+    struct Bag
+    {
+        vector<int> marks;
+
+        Bag(initializer_list<int> ms) : marks(ms) {}
+
+        void print()
+        {
+            for (const auto& m: marks)
+            {
+                println("{} ", m);
+            }
+        }
+    };
+
+    Bag b {1, 2, 3};
+    b.print();
+}
+
+void delegate_ctor()
+{
+    println("=> {}", __func__);
+
+    struct Player
+    {
+        int id;
+
+        Player() : Player {0} {}
+
+        Player(int id): id(id) {}
+    };
+
+    Player p;
+    println("Player p : {}", p.id);
+}
+
+void use_of_explicit()
+{
+    println("=> {}", __func__);
+
+    struct Player
+    {
+        int id;
+
+        // make it explicit and you get a compiler error
+        Player(int id) : id(id) {}
+    };
+
+    // implicit construction
+    Player p = 1;
+    println("Player p : {}", p.id);
+}
+
+void copy_assignment()
+{
+    struct Player
+    {
+        int id;
+
+        Player() : id(0) {}
+
+        Player(int id) : id(id) {}
+
+        Player& operator=(const Player& rhs)
+        {
+            id = rhs.id;
+
+            return *this;
+        }
+    };
+
+    Player p(1);
+    println("Player p : {}", p.id);
+
+    Player x;
+    println("Player x : {}", x.id);
+
+    x = p;
+    println("Player x : {}", x.id);
+}
+
 int main()
 {
-    write_no_ctors();
-    write_only_zero_ctor();
+    // write_no_ctors();
+    // write_only_zero_ctor();
 
-    init_list_in_ctor();
-    init_list_order();
+    // init_list_in_ctor();
+    // init_list_order();
 
-    write_only_copy_ctor();
-    write_only_custom_ctor();
+    // write_only_copy_ctor();
+    // write_only_custom_ctor();
+
+    // initializer_list_arg_ctor();
+
+    // delegate_ctor();
+    // use_of_explicit();
+
+    copy_assignment();
 
     return 0;
 }
