@@ -8,7 +8,6 @@ void show(const int& num)
     println("show num : {}", num);
 }
 
-
 void show(const int&& num)
 {
     println("=> {}", __func__);
@@ -33,6 +32,15 @@ void increment(int&& num)
     println("show rvalue num : {}", num);
 }
 
+void explicit_move(int&& num)
+{
+    println("=> {}", __func__);
+
+    // remember num is an lvalue in this func, so we need move()
+
+    increment(move(num));
+}
+
 int main()
 {
     int num = 5;
@@ -42,6 +50,8 @@ int main()
     num = 5;
     increment(num);
     increment(25);
+
+    explicit_move(10);
 
     return 0;
 }

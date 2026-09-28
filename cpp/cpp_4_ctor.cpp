@@ -240,7 +240,9 @@ void copy_assignment()
 
         Player& operator=(const Player& rhs)
         {
-            id = rhs.id;
+            if (this != &rhs) {
+                id = rhs.id;
+            }
 
             return *this;
         }
@@ -255,6 +257,60 @@ void copy_assignment()
     x = p;
     println("Player x : {}", x.id);
 }
+
+
+void copy_assignment_swap_version()
+{
+    struct Player
+    {
+        int id;
+
+        Player() : id(0) {}
+
+        Player(int id) : id(id) {}
+
+        Player& operator=(const Player& rhs)
+        {
+            // lets use the copy ctor instead of repeating logic
+            Player temp(rhs);
+            using std::swap;
+            swap(id, temp.id);
+
+            return *this;
+        }
+    };
+
+    Player p(1);
+    println("Player p : {}", p.id);
+
+    Player x;
+    println("Player x : {}", x.id);
+
+    x = p;
+    println("Player x : {}", x.id);
+}
+
+
+void write_default_member_init()
+{
+    println("=> {}", __func__);
+
+    struct Gadget {
+        int i = 0;
+        int score;
+
+        Gadget(int s)
+        {
+            println("Gadget i = {}", i);
+            println("Gadget score = {}", score);
+            score = s;
+            println("Gadget score = {}", score);
+        }
+    };
+
+    Gadget g(100);
+}
+
 
 int main()
 {
@@ -272,7 +328,10 @@ int main()
     // delegate_ctor();
     // use_of_explicit();
 
-    copy_assignment();
+    // copy_assignment();
+    copy_assignment_swap_version();
+
+    // write_default_member_init();
 
     return 0;
 }
