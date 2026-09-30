@@ -1,0 +1,39 @@
+# Define the string constant. The 'b' indicates a byte.
+data $str = { b "Hello, QBE!", b 0 }
+
+data $nl = { b "\n", b 0 }
+data $fmt = { b "int %d", b 0 }
+
+function $print_newline() {
+@start
+    call $printf(l $nl, ...)
+    ret
+}
+
+function $print_int(w %x) {
+@start
+    call $printf(l $fmt, ..., w %x)
+    ret
+}
+
+function w $add(w %a, w %b) {
+@start
+    %c =w add %a, %b
+    ret %c
+}
+
+# Define main, returning a 32-bit word (w).
+export function w $main() {
+@start
+    # Call the C library function puts with a pointer to $str.
+    # 'l' indicates a 64-bit long pointer.
+    call $puts(l $str)
+
+    %r =w call $add(w 3, w 4)
+    call $print_int(w %r)
+
+    call $print_newline()
+
+    # Return 0.
+    ret 0
+}

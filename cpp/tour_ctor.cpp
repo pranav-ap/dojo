@@ -169,6 +169,8 @@ void write_only_custom_ctor()
     Player x = p;
     println("Player x : {}", x.id);
 
+    Player p2 {1};
+    println("Player p2 : {}", p2.id);
 }
 
 void initializer_list_arg_ctor()
@@ -228,68 +230,6 @@ void use_of_explicit()
     println("Player p : {}", p.id);
 }
 
-void copy_assignment()
-{
-    struct Player
-    {
-        int id;
-
-        Player() : id(0) {}
-
-        Player(int id) : id(id) {}
-
-        Player& operator=(const Player& rhs)
-        {
-            if (this != &rhs) {
-                id = rhs.id;
-            }
-
-            return *this;
-        }
-    };
-
-    Player p(1);
-    println("Player p : {}", p.id);
-
-    Player x;
-    println("Player x : {}", x.id);
-
-    x = p;
-    println("Player x : {}", x.id);
-}
-
-
-void copy_assignment_swap_version()
-{
-    struct Player
-    {
-        int id;
-
-        Player() : id(0) {}
-
-        Player(int id) : id(id) {}
-
-        Player& operator=(const Player& rhs)
-        {
-            // lets use the copy ctor instead of repeating logic
-            Player temp(rhs);
-            using std::swap;
-            swap(id, temp.id);
-
-            return *this;
-        }
-    };
-
-    Player p(1);
-    println("Player p : {}", p.id);
-
-    Player x;
-    println("Player x : {}", x.id);
-
-    x = p;
-    println("Player x : {}", x.id);
-}
-
 
 void write_default_member_init()
 {
@@ -314,24 +254,7 @@ void write_default_member_init()
 
 int main()
 {
-    // write_no_ctors();
-    // write_only_zero_ctor();
-
-    // init_list_in_ctor();
-    // init_list_order();
-
-    // write_only_copy_ctor();
-    // write_only_custom_ctor();
-
-    // initializer_list_arg_ctor();
-
-    // delegate_ctor();
-    // use_of_explicit();
-
-    // copy_assignment();
-    copy_assignment_swap_version();
-
-    // write_default_member_init();
+    write_only_custom_ctor();
 
     return 0;
 }

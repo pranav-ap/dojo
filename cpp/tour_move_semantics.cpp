@@ -5,7 +5,7 @@ using namespace std;
 void show(const int& num)
 {
     println("=> {}", __func__);
-    println("show num : {}", num);
+    println("show lvalue num : {}", num);
 }
 
 void show(const int&& num)
@@ -18,9 +18,9 @@ void increment(int& num)
 {
     println("=> {}", __func__);
 
-    println("show num : {}", num);
+    println("show lvalue num : {}", num);
     num++;
-    println("show num : {}", num);
+    println("show lvalue num : {}", num);
 }
 
 void increment(int&& num)

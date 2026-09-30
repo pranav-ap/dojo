@@ -1,11 +1,9 @@
-#include <iterator>
 import std;
 
 using namespace std;
 
 void child_dtor_called_before_parent_dtor()
 {
-
     class Player
     {
         public:
@@ -38,6 +36,7 @@ void child_dtor_called_before_parent_dtor()
     Hero h;
     // look at the order of ctor and dtor
 }
+
 
 void reverse_order_of_attributes_defns()
 {
