@@ -15,6 +15,9 @@ void equal_and_curly()
     double d3 = {2.3}; // with {}, the = is optional
     println("d3 = {}", d3);
 
+    int fixed_arr[5] = {};
+    println("fixed_arr = {}", fixed_arr);
+
     vector<int> lst1 {1, 2, 3};
     println("lst1 = {}", lst1);
 
