@@ -1,0 +1,34 @@
+{
+  "traces": [],
+  "train": [],
+  "demos": [],
+  "signature": {
+    "instructions": "Compose a classical haiku based on the provided location and mood, integrating niche and domain-specific factual details about the setting to enhance imagery. Strictly avoid referencing the season directly; instead, infer seasonal characteristics through descriptive elements (apply a score penalty for direct mentions of seasons such as 'winter', 'spring', etc.). Ensure adherence to the traditional five-seven-five syllable structure with verified counting before finalizing the poem.\n\nWhen the mood is 'stiffled', employ words suggesting restriction or suppression while preserving poetic flow; for instance, depicting winter in a suburban garage should focus on frozen exhaust fumes or dormant vehicles rather than naming the season or location explicitly. For locations like Tokyo train stations, include typical urban seasonal and transit attributes such as condensation on glass or cold platform lights to create atmospheric depth.\n\nAlways verify syllable counts meticulously. Do not reference the input season verbatim; instead, use imagery to evoke the season.",
+    "fields": [
+      {
+        "prefix": "Location:",
+        "description": "${location}"
+      },
+      {
+        "prefix": "Mood:",
+        "description": "${mood}"
+      },
+      {
+        "prefix": "Season:",
+        "description": "${season}"
+      },
+      {
+        "prefix": "Haiku:",
+        "description": "${haiku}"
+      }
+    ]
+  },
+  "lm": null,
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.14",
+      "dspy": "3.5.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

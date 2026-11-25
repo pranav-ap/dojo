@@ -1,0 +1,21 @@
+[project]
+name = "nlp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "pranav-ap", email = "pranavap96@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "dspy>=3.5.0",
+    "openai>=3.58.0",
+    "wikipedia>=1.4.0",
+]
+
+[project.scripts]
+nlp = "nlp:main"
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
