@@ -10,6 +10,7 @@ requires-python = ">=3.14"
 dependencies = [
     "dspy>=3.5.0",
     "openai>=3.58.0",
+    "temporalio>=1.37.0",
     "wikipedia>=1.4.0",
 ]
 
